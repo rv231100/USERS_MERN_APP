@@ -1,5 +1,9 @@
 # USERS_MERN_APP
+-------------------------
 Users add and remove friend and login & signup and Authentication with Cookie.
+------------------------------------------------------------------------------
+
+"Designed a full-stack web application leveraging React for a responsive, component-driven user interface, backed by a Node.js and Express.js RESTful API, and utilizing MongoDB for efficient, schema-based data modeling."
 
 ------------------The following points explains the USER_MERN_APP implementation and basic concepts of MERN Stack.----------------------------------------
 1. creating class components, props and state, DOM events, promises.
