@@ -1,8 +1,3 @@
-# USERS_MERN_APP
-<<<<<<< HEAD
-Users add and remove friend and login & signup and Authentication with Cookie
-=======
--------------------------
 Users add and remove friend and login & signup and Authentication with Cookie.
 ------------------------------------------------------------------------------
 
