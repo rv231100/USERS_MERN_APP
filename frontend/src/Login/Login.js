@@ -24,6 +24,7 @@ const Login = ({ handleLoginData }) => {
       if (prevPath) {
         navigate(prevPath);
       }
+      navigate("/users")
     } catch (error) {
       console.log(error);
     }

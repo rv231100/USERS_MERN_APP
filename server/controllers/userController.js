@@ -16,7 +16,7 @@ const signup = async (req, res, next) => {
     // console.log(data);
     if (data) {
       res.status(201);
-      res.send(`user ${userData.username} created success..`);
+      res.send(responseCreator(`user ${userData.username} Signup successfully, Please Login..`));
     }
   } catch (error) {
     next(error);

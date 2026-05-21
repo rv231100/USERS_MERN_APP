@@ -4,7 +4,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./signup.css";
 import { signupUtil } from "../apiUtil";
+import { useDispatch } from "react-redux";
+import { errorActionCreator, signupAction } from "../reducers/userReducer";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
+
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
 
   const name = useRef("");
   const username = useRef("");
@@ -56,11 +62,13 @@ const Signup = () => {
     };
     console.log(payload);
     try {
-     const data= (await signupUtil(payload))?.data
-     console.log(data);
-     
+    //  const data= (await signupUtil(payload))?.data
+    //  console.log(data);
+    dispatch(signupAction(payload))
+    navigate("/login") 
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      errorActionCreator(error)
       
     }
     
@@ -76,7 +84,7 @@ const Signup = () => {
         <Card className=" users mt-5 p-5">
           <Card.Title>Signup</Card.Title>
           <Card.Body>
-            <Form.Group className="mb-3" controlId="name">
+            <Form.Group className="mb-4" controlId="name">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"

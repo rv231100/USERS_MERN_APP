@@ -1,5 +1,5 @@
 import { type } from "@testing-library/user-event/dist/type";
-import { addFriendUtil, loginUtil, loginWithCookieUtil, logoutUtil, removeFriendUtil } from "../apiUtil";
+import { addFriendUtil, loginUtil, loginWithCookieUtil, logoutUtil, removeFriendUtil, signupUtil } from "../apiUtil";
 
 const initialState = {
   msg: "",
@@ -11,6 +11,7 @@ const initialState = {
 };
 
 const ACTIONS = {
+  SIGNUP:"SIGNUP",
   LOGIN: "LOGIN",
   ERROR: "ERROR",
   LOGOUT:"LOGOUT",
@@ -41,6 +42,12 @@ const asyncActionCreator=(apiUtil,type,apiPayload)=>{
     }
   };
 }
+
+
+export const signupAction=(payload)=>{
+  return asyncActionCreator(signupUtil,ACTIONS.SIGNUP,payload)
+}
+
 
 export const loginWithCookieActionCreator = () => {
   return asyncActionCreator(loginWithCookieUtil,ACTIONS.LOGIN)
@@ -92,8 +99,10 @@ export const loadingAction=payload=>{
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case ACTIONS.LOGIN:
+    case ACTIONS.SIGNUP:
       var { success, data, msg } = action?.payload;
+      return {...state,msg,success}
+    case ACTIONS.LOGIN:
       var { success, data, msg } = action?.payload;
       var { name, username, friendList } = data;
       return { ...state, name, username, friendList, success, msg };
