@@ -1,5 +1,5 @@
 import { type } from "@testing-library/user-event/dist/type";
-import { addFriendUtil, loginUtil, loginWithCookieUtil, logoutUtil, removeFriendUtil, signupUtil } from "../apiUtil";
+import { addFriendUtil, generateQRCodeUtil, loginUtil, loginWithCookieUtil, logoutUtil, removeFriendUtil, resetPwdUtil, signupUtil } from "../apiUtil";
 
 const initialState = {
   msg: "",
@@ -8,6 +8,7 @@ const initialState = {
   username: "",
   loading:false,
   friendList: [],
+  qr:""
 };
 
 const ACTIONS = {
@@ -17,7 +18,9 @@ const ACTIONS = {
   LOGOUT:"LOGOUT",
   ADD_FRIEND:"ADD_FRIEND",
   REMOVE_FRIEND:"REMOVE_FRIEND",
-  LOADING:"LOADING"
+  LOADING:"LOADING",
+  QR:"QR",
+  RESET_PWD:"RESET_PWD"
 };
 
 export const errorActionCreator = (payload) => ({
@@ -44,6 +47,12 @@ const asyncActionCreator=(apiUtil,type,apiPayload)=>{
 }
 
 
+export const resetPwdAction=(payload)=>{
+  return asyncActionCreator(resetPwdUtil,ACTIONS.RESET_PWD,payload)
+}
+export const qrAction=(payload)=>{
+  return asyncActionCreator(generateQRCodeUtil,ACTIONS.QR,payload)
+}
 export const signupAction=(payload)=>{
   return asyncActionCreator(signupUtil,ACTIONS.SIGNUP,payload)
 }
@@ -99,6 +108,12 @@ export const loadingAction=payload=>{
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
 
+    case ACTIONS.RESET_PWD:
+      var { success, msg } = action?.payload;
+      return {...state, success,msg}
+    case ACTIONS.QR:
+      var { success, msg:qrcode } = action?.payload;
+      return {...state,success,qr:qrcode}
     case ACTIONS.SIGNUP:
       var { success, data, msg } = action?.payload;
       return {...state,msg,success}

@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 // import { loginUtil } from "../apiUtil";
 import { useDispatch } from "react-redux";
-import { loginActionCreator } from "../reducers/userReducer";
+import { loginActionCreator, qrAction } from "../reducers/userReducer";
 import { useLocation, useNavigate } from "react-router-dom";
 const Login = ({ handleLoginData }) => {
   // const state = useSelector((state) => state.user);
@@ -24,7 +24,7 @@ const Login = ({ handleLoginData }) => {
       if (prevPath) {
         navigate(prevPath);
       }
-      navigate("/users")
+      navigate("/users");
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +49,6 @@ const Login = ({ handleLoginData }) => {
                 onBlur={(e) => setUsername(e.target.value)}
               />
             </Form.Group>
-
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -65,6 +64,10 @@ const Login = ({ handleLoginData }) => {
               type="submit"
             >
               Login
+            </Button>{" "}
+            &nbsp;
+            <Button variant="link" onClick={(e) => navigate("/pwdReset")}>
+              Click to Reset Password
             </Button>
           </Card.Body>
         </Card>

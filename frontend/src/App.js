@@ -12,6 +12,7 @@ import { loginWithCookieUtil } from "./apiUtil";
 import { useDispatch, useSelector } from "react-redux";
 import { loginWithCookieActionCreator } from "./reducers/userReducer";
 import Spinner from 'react-bootstrap/Spinner';
+import PwdReset from './PwdReset/PwdReset';
 
 const FlexboxDemo =lazy(()=>import("./Flexbox/FlexboxDemo") );
 const UsersListDemo =lazy(()=>import( "./UsersList/UsersListDemo") );
@@ -109,6 +110,7 @@ function App() {
         />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/count"  element={<Counter/>}/>
+        <Route path="/pwdReset"  element={<PwdReset/>}/>
       </Routes>
       </Suspense>
       <div className="App">{/* <FlexboxDemo/> */}</div>

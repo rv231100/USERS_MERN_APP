@@ -7,7 +7,9 @@ const endpoints={
     LOGIN:"/user/login",
     ADD_FRIEND:"/user/addFriend",
     REMOVE_FRIEND:"/user/removeFriend",
-    LOGOUT:"/user/logout"
+    LOGOUT:"/user/logout",
+    QR:"/user/generateQR",
+    RESET_PWD:"/user/resetPwd"
 }
 
 export const signupUtil=(payload)=>{
@@ -33,4 +35,12 @@ export const removeFriendUtil=(payload)=>{
 export const logoutUtil=(payload)=>{
     const url=BASE_URL+endpoints.LOGOUT;
     return axios.get(url,{withCredentials:true});
+}
+export const generateQRCodeUtil=(payload)=>{
+    const url=BASE_URL+endpoints.QR;
+    return axios.patch(url,payload);
+}
+export const resetPwdUtil=(payload)=>{
+    const url=BASE_URL+endpoints.RESET_PWD;
+    return axios.patch(url,payload);
 }

@@ -144,10 +144,10 @@ const generateResetCode = async (req, res, next) => {
     const { username } = req.body ;
     const userUpdated = await UserModel.updateUser(username, { secret });
     if (userUpdated) {
-      res.send(`<h1>Two Factor Authentication Setup</h1>
-        <h2>Please Scan the QR Code With Google Authenticater</h2>
+      res.send(responseCreator(`<h1>Two Factor Authentication Setup</h1>
+        <h2>Please Scan the QR Code With Google Authenticater App</h2>
         <img src="${data}"/>
-        `);
+        `));
     }
   } catch (error) {
     next(error);
